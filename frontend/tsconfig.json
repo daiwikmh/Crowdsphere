@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/components/*": ["src/ui*"],
+      "@/utils/*": ["src/utils/*"]
+    },
+    "target": "ESNext",              // Or "ES6" depending on your preference
+    "lib": ["DOM", "ESNext"],        // Make sure DOM is included
+    "jsx": "react-jsx",              // This enables JSX support
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "src/**/*"
+  ]
+}
