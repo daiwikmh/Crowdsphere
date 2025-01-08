@@ -1,6 +1,4 @@
-// require("@nomiclabs/hardhat-waffle");
 require("dotenv").config({ path: ".env" });
-// require("hardhat-deploy");
 import "@nomicfoundation/hardhat-toolbox";
 
 module.exports = {
@@ -11,7 +9,7 @@ module.exports = {
   },
   networks: {
     telos_testnet: {
-      url: "https://testnet.telos.net/evm",
+      url: "https://lb.drpc.org/ogrpc?network=telos-testnet&dkey=ArRpveCLMEDGtoYvRuiHUtd5CTOhzPwR77OzIlZWwHzR",
       accounts: [process.env.TELOS_TESTNET_PRIVATE_KEY],
       chainId: 41,
     },

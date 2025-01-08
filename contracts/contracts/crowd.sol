@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: SEE LICENSE IN LICENSE
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
 contract CrowdFunding {
@@ -28,7 +28,7 @@ contract CrowdFunding {
         require(_deadline > block.timestamp, "The deadline must be in the future");
 
         Campaign storage campaign = campaigns[numberOfCampaigns];
-        campaign.owner = msg.sender; // Set the owner to the sender
+        campaign.owner = msg.sender; 
         campaign.title = _title;
         campaign.description = _description;
         campaign.target = _target;
