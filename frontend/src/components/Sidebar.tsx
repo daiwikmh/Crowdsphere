@@ -3,7 +3,9 @@ import { useNavigate, Link } from "react-router-dom";
 import { RxDashboard } from "react-icons/rx";
 import { FaUserCircle, FaMoneyCheckAlt, FaSignOutAlt } from "react-icons/fa";
 import { RiSendPlaneLine } from "react-icons/ri";
-import logo from './../crowdlogo.png'
+import logo from './../crowdlogo.png';
+import { MdLightMode } from "react-icons/md";
+
 
 const Sidebar: React.FC = () => {
   const navigate = useNavigate();
@@ -82,6 +84,12 @@ const Sidebar: React.FC = () => {
             <FaSignOutAlt size={24} color="#aaa" />
           </div>
         </div>
+        <div
+            className="w-[48px] h-[48px] rounded-[10px] flex justify-center items-center opacity-50 cursor-not-allowed"
+          >
+            <MdLightMode size={24} color="#aaa" />
+          </div>
+        
       </div>
     </div>
   );
