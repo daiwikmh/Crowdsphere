@@ -4,15 +4,19 @@ import { CustomButton } from './../utils/CustomButton';
 import { CiSearch } from "react-icons/ci";
 import logo from './../crowdlogo.png';
 import { IoMenu } from "react-icons/io5";
-
+import { useStateContext } from '../context';
+import { metamaskWallet, useConnect } from '@thirdweb-dev/react';
 
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const [isActive, setIsActive ] = useState('dashboard');
   const [toggleDrawer, setToggleDrawer] = useState(false);
-  const address=
-  '0xabc';
+  const { address} = useStateContext();
+  const connect = useConnect();
+  const metamaskConfig = metamaskWallet();
+
+
 
 
   return (
@@ -33,10 +37,10 @@ const Navbar: React.FC = () => {
       justify-end gap-4'>
         <CustomButton btnType="button"
         title={address ? 'Create a Campaign' : 'Connect'}
-        styles={address ? 'bg-[#1dc071] rounded-lg' : 'bg-[#8c6dfd]'}
+        styles={address ? 'bg-[#1dc071] rounded-lg' : 'bg-[#8c6dfd] rounded-lg'}
         handleClick = {() => {
           if (address) navigate('create-campaign')
-            else 'connect()'
+            else connect(metamaskConfig);
         }} />
 
         <Link to="/Profile">
