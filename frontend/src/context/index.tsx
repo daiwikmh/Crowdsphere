@@ -1,11 +1,14 @@
 import React, { useContext, createContext, ReactNode } from 'react';
 import { useAddress, useContract, metamaskWallet, useContractWrite } from '@thirdweb-dev/react';
 import { ethers } from 'ethers';
+import { BigNumber } from "ethers";
+
 
 interface FormData {
+  name: string;
   title: string;
   description: string;
-  target: string;
+  target: BigNumber;
   deadline: string;
   image: string;
 }
@@ -24,7 +27,7 @@ interface StateContextProviderProps {
 }
 
 export const StateContextProvider = ({ children }: StateContextProviderProps) => {
-  const { contract } = useContract('0xf59A1f8251864e1c5a6bD64020e3569be27e6AA9');
+  const { contract } = useContract('0xA22E754485D37EbC662141d06fEf3119ddd9Ec53');
   const { mutateAsync: createCampaign } = useContractWrite(contract, 'createCampaign');
 
   const address = useAddress();
@@ -34,7 +37,8 @@ export const StateContextProvider = ({ children }: StateContextProviderProps) =>
     try {
       const data = await createCampaign({
         args: [
-          address, // owner
+          
+          
           form.title, 
           form.description, 
           form.target,
