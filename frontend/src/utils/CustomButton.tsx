@@ -4,7 +4,7 @@ interface CustomButtonProps {
   btnType: 'button' | 'submit' | 'reset'; 
   title: string;
   styles: string;
-  handleClick: () => void;
+  handleClick?: () => void; 
 }
 
 export const CustomButton: React.FC<CustomButtonProps> = ({ btnType, title, styles, handleClick }) => {

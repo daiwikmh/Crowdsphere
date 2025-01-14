@@ -3,6 +3,7 @@ import {Link, useNavigate} from 'react-router-dom';
 import { CustomButton } from './../utils/CustomButton';
 import { CiSearch } from "react-icons/ci";
 import logo from './../crowdlogo.png';
+import { IoMenu } from "react-icons/io5";
 
 
 
@@ -31,7 +32,7 @@ const Navbar: React.FC = () => {
       <div className='sm:flex hidden flex-row 
       justify-end gap-4'>
         <CustomButton btnType="button"
-        title={address ? 'create a campaign' : 'Connect'}
+        title={address ? 'Create a Campaign' : 'Connect'}
         styles={address ? 'bg-[#1dc071] rounded-lg' : 'bg-[#8c6dfd]'}
         handleClick = {() => {
           if (address) navigate('create-campaign')
@@ -39,15 +40,38 @@ const Navbar: React.FC = () => {
         }} />
 
         <Link to="/Profile">
-        <div className='w-12 h-12 rounded-bg bg-[#2c2f32] flex justify-center items-center cursor-pointer'>
+        <div className='w-12 h-12 rounded-full bg-[#2c2f32] flex justify-center items-center cursor-pointer'>
           <img src={logo} alt='user' className='w-[60%] object-contain' />
         </div>
         </Link>
+
+        {/* Mobile Navigation */}
+
+        {/* <div className='sm:hidden flex justify-between
+        items-center relative'>
+           <div className='w-10 h-10 rounded-3 bg-[#2c2f32] flex justify-center items-center cursor-pointer'>
+          <img src={logo} alt='user' className='w-[60%] h-[60%] object-contain' />
+        </div>
+
+        <div className='w-9 h-9 object-contain
+        cursor-pointer'
+        onClick={() => setToggleDrawer(!toggleDrawer)}>
+        <IoMenu />
+        </div>
+        <div className={`absolute top-15 right-0 left-0 bg-slate-950 z-10 shadow-secondary py-4 ${!toggleDrawer} ? '-translate-y-[100vh]' : 'translate-y-0'
+        transition-all duration-700`}>
+          <ul className='mb-4'>
+
+          </ul>
+
+        </div>
+        
+        </div> */}
 
       </div>
       
     </div>
   );
 };
-
+ 
 export default Navbar;
