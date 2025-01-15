@@ -22,7 +22,7 @@ Install the template using [thirdweb create](https://portal.thirdweb.com/cli/cre
 
 To run this project, you will need to add the following environment variables to your .env file:
 
-`CLIENT_ID`
+`8b1cf7df57e01fea6b137edf35c3c72d`
 
 To learn how to create a client ID, refer to the [client documentation](https://portal.thirdweb.com/typescript/v5/client). 
 

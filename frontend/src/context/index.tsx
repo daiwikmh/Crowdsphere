@@ -3,6 +3,19 @@ import { useAddress, useContract, metamaskWallet, useContractWrite } from '@thir
 import { ethers } from 'ethers';
 import { BigNumber } from "ethers";
 
+interface Campaign {
+  id: string; 
+  owner: string;
+  title: string;
+  description: string;
+  target: string;
+  deadline: number;
+  amountCollected: string;
+  image: string;
+  pId: number;
+}
+
+
 
 interface FormData {
   name: string;
@@ -18,6 +31,7 @@ interface StateContextType {
   contract: any; // You can specify the contract type if available
   connect: ReturnType<typeof metamaskWallet>;
   createCampaign: (form: FormData) => Promise<void>;
+  getCampaigns:  () => Promise<Campaign[]>;
 }
 
 const StateContext = createContext<StateContextType | undefined>(undefined);
@@ -37,8 +51,6 @@ export const StateContextProvider = ({ children }: StateContextProviderProps) =>
     try {
       const data = await createCampaign({
         args: [
-          
-          
           form.title, 
           form.description, 
           form.target,
@@ -53,6 +65,24 @@ export const StateContextProvider = ({ children }: StateContextProviderProps) =>
     }
   };
 
+  const getCampaigns = async () => {
+    const campaigns = await contract?.call('getCampaigns');
+  
+    const parsedCampaigns = campaigns.map((campaign: any, i:number) =>({
+      owner: campaign.owner,
+      title: campaign.title,
+      description: campaign.description,
+      target: ethers.utils.formatEther(campaign.target.toString()),
+      deadline: campaign.deadline.toNumber(),
+      amountCollected: ethers.utils.formatEther
+      (campaign.amountCollected.toString()),
+      image: campaign.image,
+      pId: i
+
+    }));
+    return parsedCampaigns;
+  }
+
   return (
     <StateContext.Provider
       value={{
@@ -60,6 +90,7 @@ export const StateContextProvider = ({ children }: StateContextProviderProps) =>
         contract,
         connect,
         createCampaign: publishCampaign,
+        getCampaigns,
       }}
     >
       {children}
